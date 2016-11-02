@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import ua.goit.task.service.Calculator;
+import ua.goit.task.service.Printer;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class MyCalculator {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext  context = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext  context = new ClassPathXmlApplicationContext("application-context.xml", "application-aop-context.xml");
 
         MyCalculator myCalculator =context.getBean(MyCalculator.class);
         myCalculator.start();
@@ -23,6 +24,9 @@ public class MyCalculator {
 
     @Autowired
     Calculator calculator;
+
+    @Autowired
+    Printer printer;
 
     void start() throws IOException {
         calculator.run();

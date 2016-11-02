@@ -3,7 +3,7 @@ package ua.goit.task.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ua.goit.task.repo.*;
+import ua.goit.task.repo.MyOperation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -100,8 +100,6 @@ public class CalculatorImpl implements Calculator {
             sd.append(currentChar);
         }
 
-        Number result = 0;
-
         switch (this.currentOperation){
             case '+' :
                 myOperation = plus;
@@ -119,7 +117,7 @@ public class CalculatorImpl implements Calculator {
             default:
                 throw new ArithmeticException("Unknow operation");
         }
-        result = myOperation.execute(fd.toString(), sd.toString());
+        Number result  = myOperation.execute(fd.toString(), sd.toString());
         return toString(fd.toString(), sd.toString(), result);
     }
 
